@@ -22,6 +22,14 @@ class Solution {
             }
         }
 
-        return new ArrayList<>(map.values());
+        List<List<String>> result = new ArrayList<>();
+
+        for (List<String> list: map.values()) {
+            result.add(list);
+        }
+
+        // return new ArrayList<>(map.values());
+        
+        return result;
     }
 }
