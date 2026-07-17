@@ -9,6 +9,7 @@ class Solution {
     }
 
     public int gcdOfOddEvenSums(int n) {
-        return gcd(n*n, n*(n+1));
+        return gcd(n*n, n*(n+1));   // first n odd num sum -- n^2
+        // first n even number sum -- n*(n+1)
     }
 }
