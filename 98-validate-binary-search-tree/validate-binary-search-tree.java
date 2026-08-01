@@ -1,27 +1,24 @@
-import java.util.*;
 class Solution {
 
-    public void inOrder(TreeNode root, List<Integer> list) {
-        if ( root == null ) {
-            return;
+    public boolean helper(TreeNode root, TreeNode min, TreeNode max) {
+
+        if (root == null) {
+            return true;
         }
 
-        inOrder(root.left, list);
-        list.add(root.val);
-        inOrder(root.right, list);
+        if (min != null && root.val <= min.val) {
+            return false;
+        }
+
+        if (max != null && root.val >= max.val) {
+            return false;
+        }
+
+        return helper(root.left, min, root) &&
+               helper(root.right, root, max);
     }
+
     public boolean isValidBST(TreeNode root) {
-        List<Integer> list = new ArrayList<>();
-
-        inOrder(root, list);
-        int n = list.size();
-
-        for (int i=1; i<n; i++) {
-            if ( list.get(i) <= list.get(i-1) ) {
-                return false;
-            }
-        }
-
-        return true;
+        return helper(root, null, null);
     }
 }
