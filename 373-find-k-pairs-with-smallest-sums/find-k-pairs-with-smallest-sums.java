@@ -39,6 +39,8 @@ class Solution {
             ans.add(temp);
         }
 
+        Collections.reverse(ans);
+
         return ans;
     }
 }
