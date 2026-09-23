@@ -24,24 +24,44 @@
 //     }
 // }
 
+// class Solution {
+//     public int maximumSum(int[] arr) {
+
+//         long noDel = arr[0];
+//         long oneDel = Long.MIN_VALUE / 2;
+//         long ans = arr[0];
+
+//         for (int i = 1; i < arr.length; i++) {
+
+//             long oldNoDel = noDel;
+
+//             noDel = Math.max(arr[i], noDel + arr[i]);
+
+//             oneDel = Math.max(oldNoDel, oneDel + arr[i]);
+
+//             ans = Math.max(ans, Math.max(noDel, oneDel));
+//         }
+
+//         return (int) ans;
+//     }
+// }
+
+
 class Solution {
     public int maximumSum(int[] arr) {
+        int noDelete = arr[0];
+        int ans = arr[0];
+        int oneDelete = 0;
 
-        long noDel = arr[0];
-        long oneDel = Long.MIN_VALUE / 2;
-        long ans = arr[0];
+        for(int i =1 ; i <arr.length; i++){
+            int oldNoDelete = noDelete;
 
-        for (int i = 1; i < arr.length; i++) {
+            noDelete = Math.max(arr[i], noDelete + arr[i]);
 
-            long oldNoDel = noDel;
+            oneDelete = Math.max(oldNoDelete, oneDelete + arr[i]);
 
-            noDel = Math.max(arr[i], noDel + arr[i]);
-
-            oneDel = Math.max(oldNoDel, oneDel + arr[i]);
-
-            ans = Math.max(ans, Math.max(noDel, oneDel));
+            ans = Math.max(ans,  Math.max(noDelete, oneDelete));
         }
-
-        return (int) ans;
+        return ans;
     }
 }
