@@ -28,43 +28,71 @@
 // }
 
 
+// import java.util.*;
+// class Solution {
+//     public int longestPalindrome(String s) {
+        
+//         HashMap<Character, Integer> map = new HashMap<>();
+//         int n = s.length();
+
+//         for ( int i=0; i<n; i++) {
+//             char ch = s.charAt(i);
+
+//             if ( map.containsKey( ch )) {
+//                 map.put(ch, map.get(ch) + 1);
+//             } else {
+//                 map.put(ch, 1);
+//             }
+//         }
+//         int res = 0;
+
+//         for (int value : map.values()) {
+            
+//             if ( value % 2 == 0 ) {
+//                 res += value;
+                
+//             } else {
+//                 res += value - 1;
+//             }
+//         }
+
+//         if (res < s.length() ) {
+//             res ++; 
+//         }
+//         return res;
+//     }
+// }
+
 import java.util.*;
 class Solution {
     public int longestPalindrome(String s) {
-        
-        HashMap<Character, Integer> map = new HashMap<>();
+
         int n = s.length();
+        HashMap<Character, Integer> map = new HashMap<>();
+        
+        int oddFreq = 0;
 
         for ( int i=0; i<n; i++) {
             char ch = s.charAt(i);
 
-            if ( map.containsKey( ch )) {
-                map.put(ch, map.get(ch) + 1);
-            } else {
-                map.put(ch, 1);
-            }
-        }
-        int res = 0;
+            map.put( ch, map.getOrDefault(ch, 0) + 1);
 
-        for (int value : map.values()) {
-            
-            if ( value % 2 == 0 ) {
-                res += value;
-                
+            if ( map.get(ch) % 2 != 0 ) {
+                oddFreq += 1;
             } else {
-                res += value - 1;
+                oddFreq -= 1;
             }
         }
 
-        if (res < s.length() ) {
-            res ++; 
+        int res = n - oddFreq;
+
+        if ( res < n ) {
+            res++;
         }
+
         return res;
     }
 }
-
-
-
 
 
 
